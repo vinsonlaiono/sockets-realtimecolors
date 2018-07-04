@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Colors</title>
+    <!-- link for JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Boostrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <!-- Socket Link -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+        //make socket call to server
+        
+        $(document).ready(function () {
+            var socket = io();
+            $('#red').click(function () {
+                socket.emit('red')
+                console.log("red")
+            })
+            $('#green').click(function () {
+                socket.emit('green')
+            })
+            $('#blue').click(function () {
+                socket.emit('blue')
+            })
+                
+
+            socket.on('response', function(color){
+                $('body').css('background-color', `${color}`)
+            })
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="" style="margin:auto; margin-top:50px;">
+            <button class="btn btn-danger" type="button" id="red" value="red" style="padding: 100px; margin:20px;">red</button>
+            <button class="btn btn-success" type="button" id="green" value="green" style="padding: 100px; margin:20px;">green</button>
+            <button class="btn btn-primary" type="button" id="blue" value="blue" style="padding: 100px; margin:20px;">blue</button>
+            <!-- <input class="btn btn-danger" type="button" id="red" value="red" style="padding: 100px; margin:20px;">
+            <input class="btn btn-success" type="button" id="green" value="green" style="padding: 100px; margin:20px;">
+            <input class="btn btn-primary" type="button" id="blue" value="blue" style="padding: 100px; margin:20px;"> -->
+        </div>
+    </div>
+</body>
+
+</html>
